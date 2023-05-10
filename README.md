@@ -24,6 +24,81 @@ All it really takes is placing the client code entry point into a script tag ins
 
 … but before getting into details …
 
+---
+
+```shell
+$ cd demo-astro-satellites-spike
+$ npm i
+
+added 434 packages, and audited 435 packages in 3s
+
+172 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+$ npm run format
+
+> demo-astro-satellites-spike@0.0.0 format
+> prettier --write .
+
+.prettierrc.json 47ms
+
+ …
+
+tsconfig.worker.json 3ms
+$ npm run lint:types
+
+> demo-astro-satellites-spike@0.0.0 lint:types
+> astro check && tsc --noEmit
+
+09:11:59 p.m. [check] Checking files
+09:12:00 p.m. [content] Types generated 403ms
+✔  Getting diagnostics for Astro files in /home/wheatley/sbox/astro/zzz/demo-astro-satellites-spike/…
+09:12:02 p.m. [diagnostics] Result (11 files): 
+- 0 errors
+- 0 warnings
+- 0 hints
+
+$ npm run worker:types
+
+> demo-astro-satellites-spike@0.0.0 worker:types
+> ./node_modules/.bin/tsc --noEmit -p ./tsconfig.worker.json
+
+$ npm run worker:build
+
+> demo-astro-satellites-spike@0.0.0 worker:build
+> node bundle-worker.mjs
+
+$ npm run dev
+
+> demo-astro-satellites-spike@0.0.0 dev
+> astro dev
+
+  🚀  astro  v2.4.4 started in 61ms
+  
+  ┃ Local    http://localhost:3000/
+  ┃ Network  use --host to expose
+  
+09:12:50 p.m. [content] Watching src/content/ for changes
+09:12:50 p.m. [content] Types generated
+09:12:50 p.m. [astro] update /.astro/types.d.ts
+
+ …
+
+term2 $ cd demo-astro-satellites-spike
+term2 $ npm run save:posts
+
+> demo-astro-satellites-spike@0.0.0 save:posts
+> node --no-warnings save-posts.mjs
+
+“http://localhost:3000/posts.json” saved to “./dev-posts.json”
+Current 'last-modified' value: «Wed, 10 May 2023 01:13:50 GMT»
+
+term2 $ 
+```
+
+---
+
 - [Commands](#commands)
 - [Project Structure](#project-structure)
 - [Using a Web Worker to Offload Work from the Main Thread](#using-a-web-worker-to-offload-work-from-the-main-thread)
