@@ -1,0 +1,30 @@
+---
+// file: src/layouts/MainLayout.astro
+import HeadLayout from './HeadLayout.astro';
+import Nav from '../components/Nav.astro';
+import PostSearchResult from '../components/PostSearchResult.astro';
+import Footer from '../components/Footer.astro';
+import MainTemplates from '../templates/MainTemplates.astro';
+
+const {
+	title = 'My Astro Blog',
+	description = 'My musings about the Astro framework',
+} = Astro.props;
+---
+
+<html lang="en">
+	<HeadLayout {title} {description} />
+	<body>
+		<Nav />
+		<PostSearchResult />
+		<main>
+			<slot>Default Text</slot>
+		</main>
+		<Footer />
+		<MainTemplates />
+		<script>
+			import { rendezvous } from '../client/entry-client';
+			rendezvous();
+		</script>
+	</body>
+</html>

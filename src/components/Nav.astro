@@ -1,0 +1,59 @@
+---
+const anchors: [string, string][] = [
+	['/', ''],
+	['/blog/', 'Blog'],
+	['/about/', 'About'],
+];
+
+const homePath = anchors[0][0];
+const [active, page] = ((list: [string, string][]) => {
+	const pagePath = Astro.url.pathname;
+	let active = '';
+	let page = '';
+	for (const [path] of list) {
+		if (!pagePath.startsWith(path)) continue;
+
+		if (pagePath === path) {
+			active = '';
+			page = path;
+			break;
+		}
+
+		if (active.length < path.length) active = path;
+	}
+	return [active, page];
+})(anchors);
+
+const activeClass = (path: string) =>
+	path === active ? 'js-navbar--active' : undefined;
+const ariaCurrent = (path: string) => (path === page ? 'page' : undefined);
+---
+
+<nav class="js\:f-nav" aria-label="Primary">
+	<div class="navbar">
+		<a
+			class:list={['navbar__link', activeClass(homePath)]}
+			href={homePath}
+			aria-current={ariaCurrent(homePath)}
+			aria-label="Go home"
+		>
+			<img src="/avatar.svg" alt="Avatar" />
+		</a>
+		<input type="text" placeholder="Search posts" />
+		<ul>
+			{
+				anchors.slice(1).map(([path, label]) => (
+					<li>
+						<a
+							class:list={['navbar__link', activeClass(path)]}
+							href={path}
+							aria-current={ariaCurrent(path)}
+						>
+							{label}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</nav>

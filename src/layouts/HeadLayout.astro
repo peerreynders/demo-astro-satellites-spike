@@ -1,0 +1,80 @@
+---
+const { title, description } = Astro.props;
+---
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="generator" content={Astro.generator} />
+	<meta name="description" content={description} />
+
+	<title>{title}</title>
+
+	<!-- look into Fontsource for self-hosting Google fonts -->
+	<style is:global>
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+		}
+
+		.js-remove {
+			display: none;
+		}
+
+		.navbar {
+			display: flex;
+			align-items: start;
+		}
+
+		.navbar > input {
+			margin: 0.3rem 0 0 0;
+		}
+
+		.navbar > ul {
+			list-style: none;
+			margin: 0.3rem 0 0 auto;
+			padding-inline-start: 0;
+			display: flex;
+		}
+
+		.navbar > ul > li {
+			margin-left: 0.2rem;
+			margin-right: 0.8rem;
+		}
+
+		.navbar__link img {
+			width: 60px;
+		}
+
+		.js\:f-nav a {
+			text-decoration: none;
+		}
+
+		.js\:f-nav a[aria-current='page'],
+		.js-navbar--active {
+			color: #fc3e59;
+		}
+
+		.post-search-result {
+			list-style: none;
+			width: max-content;
+			margin-block-start: 0;
+			padding-inline-start: 60px;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+		}
+
+		.post-search-result > li {
+			border: thin solid rebeccapurple;
+			border-radius: 0.6rem;
+			padding: 0.5rem;
+		}
+
+		.post-search-result > * + * {
+			margin-block-start: 1rem;
+		}
+	</style>
+</head>
