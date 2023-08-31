@@ -1,5 +1,5 @@
 // file: src/client/fragments/nav.ts
-import type { RegularElementsOptions as Spec } from 'regular-elements';
+import type { QsaoSpec as Spec } from 'qsa-observer';
 import type { SendPostSearch } from '../app-types';
 
 const NAME = 'js\\:f-nav';
@@ -27,28 +27,25 @@ class Binder {
 function makeSpec(send: SendPostSearch) {
 	const instances = new WeakMap<Element, Binder>();
 
-	function connectedCallback(this: Element) {
-		if (!(this instanceof HTMLElement)) return;
-
-		const searchRef = this.querySelector('input');
-		if (!(searchRef instanceof HTMLInputElement)) return;
-
-		const binder = new Binder(this, searchRef, send);
-		instances.set(this, binder);
-		binder.searchRef.addEventListener('input', binder);
-	}
-
-	function disconnectedCallback(this: Element) {
-		const binder = instances.get(this);
-		if (!binder) return;
-
-		binder.searchRef.removeEventListener('input', binder);
-		instances.delete(this);
-	}
-
 	const spec: Spec = {
-		connectedCallback,
-		disconnectedCallback,
+		connected(element) {
+			if (!(element instanceof HTMLElement)) return;
+
+			const searchRef = element.querySelector('input');
+			if (!(searchRef instanceof HTMLInputElement)) return;
+
+			const binder = new Binder(element, searchRef, send);
+			instances.set(element, binder);
+			binder.searchRef.addEventListener('input', binder);
+		},
+
+		disconnected(element) {
+			const binder = instances.get(element);
+			if (!binder) return;
+
+			binder.searchRef.removeEventListener('input', binder);
+			instances.delete(element);
+		},
 	};
 
 	return spec;

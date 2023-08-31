@@ -53,7 +53,7 @@ $ npm run lint:types
 
 09:11:59 p.m. [check] Checking files
 09:12:00 p.m. [content] Types generated 403ms
-✔  Getting diagnostics for Astro files in /home/wheatley/sbox/astro/zzz/demo-astro-satellites-spike/…
+✔  Getting diagnostics for Astro files in /demo-astro-satellites-spike/…
 09:12:02 p.m. [diagnostics] Result (11 files): 
 - 0 errors
 - 0 warnings

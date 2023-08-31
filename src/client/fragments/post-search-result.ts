@@ -1,7 +1,7 @@
 // file: src/client/fragments/post-search-result.ts
 import { formatDateForPost } from '../shame';
 
-import type { RegularElementsOptions as Spec } from 'regular-elements';
+import type { QsaoSpec as Spec } from 'qsa-observer';
 import type { SinkPostSearchResult } from '../app-types';
 import type { PostSearchResult } from '../../schemas';
 
@@ -129,24 +129,20 @@ function makeSpec(sink: SinkPostSearchResult) {
 	const instances = new WeakMap<Element, Binder>();
 	const itemTemplate = getItemTemplate();
 
-	function connectedCallback(this: Element) {
-		if (!(this instanceof HTMLUListElement)) return;
-
-		const binder = new Binder(sink, itemTemplate, this);
-		instances.set(this, binder);
-	}
-
-	function disconnectedCallback(this: Element) {
-		const instance = instances.get(this);
-		if (!instance) return;
-
-		instance.unsubscribe();
-		instances.delete(this);
-	}
-
 	const spec: Spec = {
-		connectedCallback,
-		disconnectedCallback,
+		connected(element) {
+			if (!(element instanceof HTMLUListElement)) return;
+
+			const binder = new Binder(sink, itemTemplate, element);
+			instances.set(element, binder);
+		},
+		disconnected(element){
+			const instance = instances.get(element);
+			if (!instance) return;
+
+			instance.unsubscribe();
+			instances.delete(element);
+		},
 	};
 
 	return spec;

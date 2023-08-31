@@ -1,23 +1,22 @@
 // file: src/index.d.ts
-declare module 'regular-elements' {
-	export interface RegularElementsOptions {
-		connectedCallback?(this: Element): void;
-		disconnectedCallback?(this: Element): void;
-		attributeChangedCallback?(
-			this: Element,
-			attributeName: string,
-			oldValue: string,
-			newValue: string
-		): void;
-		observedAttributes?: string[];
-	}
+declare module 'qsa-observer' {
+	export interface QsaoOptions {
+		query: string [];
+		root: Node;
+    handle(element: Element, connected: boolean, selector: string);
+	};
 
-	export function define(
-		selector: string,
-		options: RegularElementsOptions
-	): void;
-	export function get(selector: string): RegularElementsOptions;
-	export function whenDefined(
-		selector: string
-	): Promise<RegularElementsOptions>;
+	export interface QsaoReturn {
+		drop(elements: ArrayLike<Element>): void;
+		flush(): void;
+		observer: MutationObserver;
+		parse(elements: ArrayLike<Element>, connected?: boolean): void;
+	};
+
+	export type QsaoSpec = {
+		connected?: (element: Element) => void;
+		disconnected?: (element: Element) => void;
+	};
+
+	export default function (options: QsaoOptions): QsaoReturn
 }
