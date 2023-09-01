@@ -136,7 +136,7 @@ function makeSpec(sink: SinkPostSearchResult) {
 			const binder = new Binder(sink, itemTemplate, element);
 			instances.set(element, binder);
 		},
-		disconnected(element){
+		disconnected(element) {
 			const instance = instances.get(element);
 			if (!instance) return;
 

@@ -6,7 +6,7 @@ import * as nav from './fragments/nav';
 import * as footer from './fragments/footer';
 import * as postSearchResult from './fragments/post-search-result';
 
-// QuerySelectorAll Observer based 
+// QuerySelectorAll Observer based
 // (dis)connected callback
 import type { QsaoSpec } from 'qsa-observer';
 

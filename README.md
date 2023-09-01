@@ -54,7 +54,7 @@ $ npm run lint:types
 09:11:59 p.m. [check] Checking files
 09:12:00 p.m. [content] Types generated 403ms
 ✔  Getting diagnostics for Astro files in /demo-astro-satellites-spike/…
-09:12:02 p.m. [diagnostics] Result (11 files): 
+09:12:02 p.m. [diagnostics] Result (11 files):
 - 0 errors
 - 0 warnings
 - 0 hints
@@ -75,10 +75,10 @@ $ npm run dev
 > astro dev
 
   🚀  astro  v2.4.4 started in 61ms
-  
+
   ┃ Local    http://localhost:3000/
   ┃ Network  use --host to expose
-  
+
 09:12:50 p.m. [content] Watching src/content/ for changes
 09:12:50 p.m. [content] Types generated
 09:12:50 p.m. [astro] update /.astro/types.d.ts
@@ -94,7 +94,7 @@ term2 $ npm run save:posts
 “http://localhost:3000/posts.json” saved to “./dev-posts.json”
 Current 'last-modified' value: «Wed, 10 May 2023 01:13:50 GMT»
 
-term2 $ 
+term2 $
 ```
 
 ---
