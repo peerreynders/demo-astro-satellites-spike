@@ -48,7 +48,7 @@ function rendezvous() {
 		app.sinkPostSearchResult
 	);
 
-	// 3. Wire up the DOM (with regular-elements)
+	// 3. Wire up the DOM (via qsa-observer)
 	define(nav.NAME, navSpec);
 	define(postSearchResult.NAME, postSearchResultSpec);
 	define(footer.NAME, footer.spec);
